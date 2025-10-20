@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Modal de Carga de Archivos</title>
+<style>
+/* Estilos básicos para el modal (CSS) */
+.modal {
+    display: block; /* Oculto por defecto */
+    position: fixed; /* Posición fija */
+    z-index: 1; /* Encima de todo */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: none; /* Habilita scroll si es necesario */
+    background-color: rgb(0,0,0); /* Fondo negro */
+    background-color: rgba(0,0,0,0.4); /* Fondo negro con transparencia */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* Centrado vertical y horizontalmente */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 60%; /* Ancho del contenido */
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+</style>
+</head>
+<body>
+
+<!-- El Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Contenido del Modal -->
+  <div class="modal-content">
+    <span class="close-button" id="closeModalBtn">&times;</span>
+    <h2>Cargar Archivo</h2>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+      <label for="file">Seleccionar archivos:</label><br><br>
+      <input type="file" name="file" id="file" multiple><br><br>
+      <div style="text-align: center;"><input type="submit" value="Subir Archivo" name="submit"></div>
+    </form>
+  </div>
+
+</div>
+
+<script>
+// JavaScript para abrir y cerrar el modal
+var modal = document.getElementById("myModal");
+var span = document.getElementById("closeModalBtn");
+
+// Cuando el usuario hace clic en la X, cierra el modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// Cuando el usuario hace clic en cualquier lugar fuera del modal, lo cierra
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+
+</body>
+</html>

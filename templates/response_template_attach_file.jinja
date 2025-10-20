@@ -1,0 +1,7 @@
+{% if success %}
+✅ Archivos adjuntados:
+- El proceso de adjuntar archivos fue ejecutado. Verificar incidentes en su instancia de saforce.
+{% else %}
+❌ Failed to update incident:
+- Error: {{ error_message }}
+{% endif %}
