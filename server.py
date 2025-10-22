@@ -2,7 +2,8 @@ import os
 import requests
 import base64
 from uuid import uuid4
-from flask import Flask, request, render_template, send_file
+from flask import Flask, request, render_template, send_file, jsonify
+from flask_cors import CORS
 from werkzeug.utils import secure_filename # Para validar y limpiar el nombre del archivo
 from jinja2 import Environment, FileSystemLoader
 from werkzeug.utils import secure_filename
@@ -38,8 +39,10 @@ except Exception as e:
 template_env = Environment(loader=FileSystemLoader("templates"))
 
 app = Flask(__name__)
+CORS(app)
 api = Api(app)
 swagger = Swagger(app)
+
 app.config['UPLOAD_FOLDER'] = './upload_file' # Carpeta donde se guardarán los archivos
 
 if not os.path.exists(app.config['UPLOAD_FOLDER']):
@@ -134,8 +137,18 @@ def upload_pdf():
             #Se borra el archivo del servidor luego de procesarlo
             os.remove(filepath)
 
+    #return "Archivo(s) subido(s) y procesado(s)", status_code
+    if status_code != 200:
+        return None
+    else: 
+        return jsonify({
+            'message': 'Archivo subido exitosamente',
+            'filename': filename,
+            'size': 0,
+            'path': filepath,
+            'status': status_code
+        }), status_code
 
-    return "Archivo(s) subido(s) y procesado(s)", status_code
 
 if __name__ == '__main__':
     app.run(debug=True)
