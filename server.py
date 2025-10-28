@@ -7,7 +7,6 @@ from flask_cors import CORS
 from werkzeug.utils import secure_filename # Para validar y limpiar el nombre del archivo
 from jinja2 import Environment, FileSystemLoader
 from werkzeug.utils import secure_filename
-from flasgger import Swagger
 from flask_restful import Resource, Api
 from schemas import ResponseMessageModel, OutputModel
 from simple_salesforce import Salesforce
@@ -152,3 +151,4 @@ def upload_pdf():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
