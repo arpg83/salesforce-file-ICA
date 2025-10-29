@@ -11,6 +11,7 @@ from flask_restful import Resource, Api
 from schemas import ResponseMessageModel, OutputModel
 from simple_salesforce import Salesforce
 from dotenv import load_dotenv
+from uvicorn.middleware.wsgi import WSGIMiddleware
 
 load_dotenv()
 
@@ -43,6 +44,7 @@ CORS(app, resources={r"/api/*": {"origins": "https://browse-file-ica.onrender.co
 api = Api(app)
 
 app.config['UPLOAD_FOLDER'] = './upload_file' # Carpeta donde se guardarán los archivos
+asgi_app = WSGIMiddleware(app)
 
 if not os.path.exists(app.config['UPLOAD_FOLDER']):
     os.makedirs(app.config['UPLOAD_FOLDER'])
@@ -149,8 +151,9 @@ def upload_pdf():
         }), status_code
 
 
-if __name__ == '__main__':
-    app.run(debug=True)
+#if __name__ == '__main__':
+    #app.run(debug=True)
+
 
 
 
