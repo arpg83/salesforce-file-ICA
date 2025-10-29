@@ -38,7 +38,8 @@ except Exception as e:
 template_env = Environment(loader=FileSystemLoader("templates"))
 
 app = Flask(__name__)
-CORS(app)
+#CORS(app)
+CORS(app, resources={r"/api/*": {"origins": "https://browse-file-ica.onrender.com/"}}) 
 api = Api(app)
 
 app.config['UPLOAD_FOLDER'] = './upload_file' # Carpeta donde se guardarán los archivos
@@ -150,6 +151,7 @@ def upload_pdf():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
 
 
 
