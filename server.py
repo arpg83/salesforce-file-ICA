@@ -140,18 +140,19 @@ def upload_pdf():
             #Se borra el archivo del servidor luego de procesarlo
             os.remove(filepath)
 
-    return str(status_code)
-    #if status_code != 200:
-    #    return None
-    #else: 
-    #    return jsonify({
-    #        'message': 'Archivo subido exitosamente',
-    #        'filename': filename,
-    #        'size': 0,
-    #        'path': filepath,
-    #        'status': status_code
-    #    }), status_code
+    #return str(status_code)
+    if status_code != 200:
+        return None
+    else: 
+        return jsonify({
+            'message': 'Archivo subido exitosamente',
+            'filename': filename,
+            'size': 0,
+            'path': filepath,
+            'status': status_code
+        }), status_code
     
+
 
 
 
