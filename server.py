@@ -131,6 +131,9 @@ def upload_pdf():
             print(f"Archivo guardado: {filename} / Ticket SGC: {ticket_sgc}")
 
             message_attach = attach_file(ticket_sgc, link_server + filename)
+            print("************")
+            print(message_attach)
+            print("******")
             if message_attach != "200":
                 status_code = 400
 
@@ -149,6 +152,7 @@ def upload_pdf():
             'status': status_code
         }), status_code
     
+
 
 
 
