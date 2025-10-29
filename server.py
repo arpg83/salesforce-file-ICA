@@ -42,7 +42,7 @@ app = Flask(__name__)
 #CORS(app)
 CORS(app, resources={r"/api/*": {"origins": "https://browse-file-ica.onrender.com/"}}) 
 api = Api(app)
-
+asgi_app = WSGIMiddleware(app)
 app.config['UPLOAD_FOLDER'] = './upload_file' # Carpeta donde se guardarán los archivos
 
 if not os.path.exists(app.config['UPLOAD_FOLDER']):
@@ -148,10 +148,8 @@ def upload_pdf():
             'path': filepath,
             'status': status_code
         }), status_code
+    
 
-
-if __name__ == '__main__':
-    asgi_app = WSGIMiddleware(app)
 
 
 
