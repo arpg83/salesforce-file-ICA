@@ -40,7 +40,8 @@ template_env = Environment(loader=FileSystemLoader("templates"))
 
 app = Flask(__name__)
 #CORS(app)
-CORS(app, resources={r"/api/*": {"origins": "https://browse-file-ica.onrender.com/"}}) 
+#CORS(app, resources={r"/api/*": {"origins": "https://browse-file-ica.onrender.com/"}}) 
+CORS(app, resources={r"/api/*": {"origins": "*"}}) 
 api = Api(app)
 asgi_app = WSGIMiddleware(app)
 app.config['UPLOAD_FOLDER'] = './upload_file' # Carpeta donde se guardarán los archivos
@@ -153,6 +154,7 @@ def upload_pdf():
     #        'status': status_code
     #    }), status_code
     
+
 
 
 
