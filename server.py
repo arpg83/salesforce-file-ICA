@@ -141,17 +141,19 @@ def upload_pdf():
             os.remove(filepath)
 
     #return str(status_code)
-    if status_code != 200:
-        return None
-    else: 
-        return jsonify({
-            'message': 'Archivo subido exitosamente',
-            'filename': filename,
-            'size': 0,
-            'path': filepath,
-            'status': status_code
-        }), status_code
+    return "File uploaded", status_code
+    #if status_code != 200:
+    #    return None
+    #else: 
+    #    return jsonify({
+    #        'message': 'Archivo subido exitosamente',
+    #        'filename': filename,
+    #        'size': 0,
+    #        'path': filepath,
+    #        'status': status_code
+    #    }), status_code
     
+
 
 
 
